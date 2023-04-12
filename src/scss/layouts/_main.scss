@@ -1,0 +1,161 @@
+main {
+    .object-fit {
+
+        &--kiloren {
+            height: 40rem;
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+
+            @include respond-to(lg) {
+                height: 50rem;
+            }
+
+            @include respond-to(xxl) {
+                background-size: 100%;
+                background-image: url("../img/kiloren.jpg?resize&sizes[]=2048");
+
+                @media only screen and (min-device-pixel-ratio: 2),
+                only screen and (min-resolution: 192dpi) {
+                    background-image: url("../img/kiloren-2x.jpg?resize&sizes[]=2048");
+                }
+
+                @include blur;
+            }
+
+            img {
+                object-fit: cover;
+                position: absolute;
+                height: 68vh;
+                max-width: inherit;
+                width: 100%;
+
+                @include respond-to(xxl) {
+                    max-width: 224.8rem;
+                    z-index: 3;
+                    margin: 0 auto;
+                    position: relative;
+                }
+            }
+        }
+
+        &--stormtroopers {
+            height: 25rem;
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+
+            @include respond-to(xxl) {
+                background-size: 50%;
+                background-image: url("../img/stormtroopers.jpg?resize&sizes[]=2048");
+
+                @media only screen and (min-device-pixel-ratio: 2),
+                only screen and (min-resolution: 192dpi) {
+                    background-image: url("../img/stormtroopers-2x.jpg?resize&sizes[]=2048");
+                }
+
+                @include blur;
+            }
+
+            img {
+                object-fit: cover;
+                height: 25rem;
+                width: 100%;
+
+                @include respond-to(xxl) {
+                    max-width: 224.8rem;
+                    z-index: 3;
+                    margin: 0 auto;
+                    position: relative;
+                }
+            }
+        }
+    }
+
+    .intro {
+        @include respond-to(lg) {
+            display: flex;
+            gap: 7.8rem;
+            padding: 10.3rem 12.2rem 10rem 12.2rem;
+        }
+
+        &__content {
+            text-align: center;
+
+            @include respond-to(lg) {
+                text-align: left;
+                flex: 1 1 auto;
+            }
+
+            p {
+                font-size: 1.8rem;
+                line-height: 2.4rem;
+                margin-bottom: 2.4rem;
+
+                &:last-child {
+                    margin-bottom: inherit;
+                }
+            }
+        }
+
+        &__advertisement {
+            display: none;
+
+            @include respond-to(lg) {
+                display: block;
+                flex: 0 0 30rem;
+                position: relative;
+
+                a {
+                    position: absolute;
+                    top: 0;
+                }
+
+                &--fixed {
+                    a {
+                        position: fixed;
+                        top: 10.3rem;
+                    }
+                }
+            }
+        }
+    }
+
+    .text-image {
+        @include respond-to(lg) {
+            padding: 6.5rem 12.2rem 6.5rem 12.2rem;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        img {
+            margin: 0 auto;
+            width: 100%;
+            max-width: 30rem;
+
+            @include respond-to(sm) {
+                float: left;
+            }
+        }
+
+        p,
+        ul {
+            font-size: 1.4rem;
+
+            li::before {
+                content: "–";
+                margin-right: 0.5rem;
+            }
+        }
+
+        >img {
+            margin-bottom: 2.8rem;
+
+            @include respond-to(sm) {
+                margin: 0 2rem 0.5rem 0;
+            }
+        }
+    }
+}

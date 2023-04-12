@@ -1,0 +1,118 @@
+@mixin mediaMin($_min-width) {
+    @media (min-width: $_min-width) {
+        & {
+            @content;
+        }
+    }
+}
+
+@mixin emptyAfterBefore {
+    content: "";
+    display: inline-block;
+    position: absolute;
+}
+
+@mixin gradient($direction, $list) {
+    background: linear-gradient($direction, $list);
+}
+
+$breakpoints: (
+    xs: 0,
+    sm: 576px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px,
+    xxl: 1400px,
+);
+
+@mixin respond-to($breakpoint) {
+    @if map-has-key($breakpoints, $breakpoint) {
+        @media (min-width: #{map-get($breakpoints, $breakpoint)}) {
+            @content;
+        }
+    }
+}
+
+@mixin blur {
+    &::before {
+        @include emptyAfterBefore;
+        z-index: 2;
+        width: 100%;
+        height: 100%;
+        backdrop-filter: blur(2rem);
+        background-color: rgba(0, 0, 0, 0.7);
+    }
+}
+
+$breakpoints: (
+    xs: 0,
+    sm: 576px,
+    md: 768px,
+    header: 890px,
+    lg: 992px,
+    xl: 1200px,
+    xxl: 1400px,
+);
+
+@mixin respond-to($breakpoint) {
+    @if map-has-key($breakpoints, $breakpoint) {
+        @media (min-width: #{map-get($breakpoints, $breakpoint)}) {
+            @content;
+        }
+    }
+}
+
+
+@mixin bgRespond-to($breakpoint, $imagex1, $imagex2) {
+    @if map-has-key($breakpoints, $breakpoint) {
+        @media (min-width: #{map-get($breakpoints, $breakpoint)}) {
+            background-image: url("../img/#{$imagex1}?resize&sizes[]=#{map-get($breakpoints, $breakpoint)}");
+
+            @media only screen and (min-device-pixel-ratio: 2),
+            only screen and (min-resolution: 192dpi) {
+                background-image: url("../img/#{$imagex2}?resize&sizes[]=#{map-get($breakpoints, $breakpoint)}");
+            }
+        }
+    }
+}
+
+
+@mixin bgStars {
+
+    &::before,
+    &::after {
+        @include emptyAfterBefore;
+        left: 0;
+        right: 0;
+        z-index: -1;
+        background-position: top center;
+        background-repeat: no-repeat;
+        background-size: auto 50vh;
+        background-color: $bg-color-dark;
+
+        @media (min-width: 375px) {
+            background-image: url("../img/header-bg.png?resize&sizes[]=576");
+
+            @media only screen and (min-device-pixel-ratio: 2),
+            only screen and (min-resolution: 192dpi) {
+                background-image: url("../img/header-bg-2x.png?resize&sizes[]=576");
+            }
+        }
+
+
+        @include bgRespond-to(sm, 'header-bg.png', 'header-bg-2x.png');
+        @include bgRespond-to(md, 'header-bg.png', 'header-bg-2x.png');
+
+    }
+
+    &::before {
+        top: 0;
+        bottom: 50%;
+    }
+
+    &::after {
+        top: 50%;
+        bottom: 0;
+        transform: rotate(180deg);
+    }
+}

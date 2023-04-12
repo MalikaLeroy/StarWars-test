@@ -1,0 +1,273 @@
+header {
+    background-color: $bg-color-dark;
+
+    .top-banner {
+        height: 40rem;
+        overflow: hidden;
+        padding: 0 1.3rem;
+        position: relative;
+
+        @include respond-to(lg) {
+            height: 50rem;
+        }
+
+        &__logo {
+            object-fit: contain;
+            max-width: 100%;
+            height: 100%;
+            margin: 0 auto;
+            position: relative;
+
+            @include respond-to(sm) {
+                width: 100%;
+                max-width: 63.7rem;
+            }
+
+            &.lazyloading {
+                background: linear-gradient(-45deg, $bg-color-dark, $bg-color-dark);
+            }
+        }
+
+        &__bg {
+            display: block;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            transform: translateY(0);
+            @include bgStars;
+
+            &::before,
+            &::after {
+                background-size: 100%;
+            }
+        }
+    }
+
+    .main-menu {
+        li {
+            margin-top: 4rem;
+
+            @include respond-to(lg) {
+                margin-top: 0rem;
+            }
+
+            &:first-child {
+                margin-top: 5.6rem;
+
+                @include respond-to(lg) {
+                    margin-top: 0rem;
+                }
+            }
+
+            a {
+                font-size: 2rem;
+
+                @include respond-to(lg) {
+                    font-size: 1.4rem;
+                }
+
+                &:link,
+                &:visited {
+                    color: $secondary-font-color;
+                    text-decoration: none;
+                    text-transform: uppercase;
+                }
+
+                &:hover,
+                &:active {
+                    color: $quinary-font-color;
+                }
+
+                &:focus {
+                    color: $primary-font-color;
+                }
+            }
+        }
+
+        position: absolute;
+        z-index: 3;
+        transition: background 0.2s ease-out;
+
+        &--bgColor {
+            height: 3.5rem;
+            width: 4.2rem;
+            position: fixed;
+            right: 1.6rem;
+            top: 1.5rem;
+            border-radius: 0.5rem;
+            background-color: rgba(0, 0, 0, 0.7);
+
+            @include respond-to(lg) {
+                margin-top: 0rem;
+                height: inherit;
+                width: inherit;
+                right: inherit;
+                top: inherit;
+                border-radius: inherit;
+            }
+        }
+
+        &__toggle {
+            height: 1.5rem;
+            position: fixed;
+            z-index: 4;
+            right: 2rem;
+            top: 2.5rem;
+            transition: all 0.3s ease-in-out;
+            transform: translateX(0vw);
+
+            &[aria-expanded="true"] {
+                transform: translateX(calc(-100vw + 7.4rem));
+            }
+
+            &__img {
+                background: $bg-color-light;
+                transition: background 0.2s ease-in-out;
+                display: block;
+                height: 0.5rem;
+                width: 3.4rem;
+                position: relative;
+                border-radius: 0.5rem;
+
+                &::before,
+                &::after {
+                    background: $bg-color-light;
+                    content: "";
+                    display: block;
+                    height: 100%;
+                    position: absolute;
+                    transition: all 0.2s ease-in-out;
+                    width: 100%;
+                    border-radius: 0.5rem;
+                }
+
+                &:hover {
+                    background-color: $quinary-font-color;
+
+                    &::before,
+                    &::after {
+                        background-color: $quinary-font-color;
+                    }
+                }
+
+                &::before {
+                    top: 1rem;
+                }
+
+                &::after {
+                    top: -1rem;
+                }
+
+                &--open {
+                    background: transparent;
+
+                    &:hover {
+                        background: transparent;
+                    }
+
+                    height: 0.7rem;
+
+                    &::before,
+                    &::after {
+                        top: 0;
+                        border-radius: 0.2rem;
+                    }
+
+                    &:hover {
+
+                        &::before,
+                        &::after {
+                            background-color: $quinary-font-color;
+                        }
+                    }
+
+                    &::before {
+                        transform: rotate(-45deg);
+                    }
+
+                    &::after {
+                        transform: rotate(45deg);
+                    }
+                }
+            }
+
+            @include respond-to(lg) {
+                display: none;
+            }
+
+            &:focus:not(:hover) {
+
+                background-color: $quinary-font-color;
+                border-radius: 0.2rem;
+
+                span.main-menu__toggle__img {
+                    background-color: $primary-font-color;
+                    box-shadow: 0 0 0 0.3rem $quinary-font-color;
+
+                    &--open {
+                        background-color: $primary-font-color;
+                        box-shadow: 0 0 0 0.3rem $primary-font-color;
+
+                    }
+
+                    &::before,
+                    &::after {
+                        background-color: $primary-font-color;
+                        box-shadow: 0 0 0 0.3rem $quinary-font-color;
+
+                    }
+                }
+
+
+
+
+            }
+        }
+
+        &__list {
+            @include bgStars;
+            font-weight: bold;
+            text-align: center;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            transform: translateX(100%);
+            transition: all 0.3s ease-in-out;
+
+            @include respond-to(md) {
+
+                &::before,
+                &:after {
+                    background-size: 140%;
+                }
+            }
+
+            @include respond-to(lg) {
+                transform: translateX(0);
+                background: inherit;
+                height: inherit;
+                padding: 1.2rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 3.8rem;
+
+                &::before,
+                &::after {
+                    display: none;
+                }
+            }
+
+            &--open {
+                transform: translateX(0);
+
+
+
+            }
+        }
+    }
+}

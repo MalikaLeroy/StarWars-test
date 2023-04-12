@@ -1,0 +1,137 @@
+footer {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: $bg-color-medium;
+    background-size: cover;
+    color: $ternary-font-color;
+    font-size: 1.2rem;
+    padding: 6rem 3.3rem 4.2rem 3.3rem;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 2rem;
+    background-image: url("../img/darthvader.jpg?resize&sizes[]=576");
+
+    @media only screen and (min-device-pixel-ratio: 2),
+    only screen and (min-resolution: 192dpi) {
+        background-image: url("../img/darthvader_2x.jpg?resize&sizes[]=576");
+    }
+
+    @include bgRespond-to(sm, 'darthvader.jpg', 'darthvader_2x.jpg');
+    @include bgRespond-to(md, 'darthvader.jpg', 'darthvader_2x.jpg');
+
+    @include respond-to(md) {
+        background-size: contain;
+    }
+
+
+
+    a {
+
+        &:link,
+        &:visited {
+            color: $ternary-font-color;
+        }
+
+        &:hover,
+        &:active {
+            color: $secondary-font-color;
+        }
+    }
+
+    @include respond-to(lg) {
+        padding: 6.4rem 12.2rem 7.7rem 12.2rem;
+    }
+
+    .container {
+        width: 100%;
+
+        @include respond-to(lg) {
+            max-width: $maxWidth;
+        }
+
+        margin: 0 auto;
+
+        >p {
+            display: none;
+        }
+
+        @include respond-to(sm) {
+            >p {
+                display: block;
+                text-align: center;
+                margin-bottom: 3rem;
+            }
+        }
+
+        >ul {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            text-align: center;
+            gap: 2rem;
+
+            @include respond-to(sm) {
+                align-items: flex-start;
+
+                >li {
+                    flex: 0 0 33%;
+                }
+            }
+
+            @include respond-to(md) {
+                gap: 0rem;
+            }
+
+            >li li {
+                margin-bottom: 0.4rem;
+            }
+
+            >li:last-child {
+                margin-top: 4.6rem;
+                flex: 1 1 100%;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                margin-bottom: 0;
+                align-items: center;
+                gap: 2rem 4.5rem;
+
+                @include respond-to(sm) {
+                    flex-direction: column;
+                    margin-top: 0;
+                    gap: 0.5rem;
+                }
+
+                @include respond-to(sm) {
+                    flex: 0 0 33%;
+                }
+
+                li {
+                    margin-bottom: 0;
+
+                    a {
+                        line-height: 0;
+                        display: block;
+
+                        svg path[fill="#9B9B9B"] {
+                            transition: all 0.2s ease-out;
+                        }
+
+                        &:hover {
+                            svg path[fill="#9B9B9B"] {
+                                fill: $quaternary-font-color;
+                            }
+                        }
+                    }
+                }
+
+                ul {
+                    display: flex;
+                    align-items: center;
+                    gap: 2rem;
+                }
+            }
+        }
+    }
+}
